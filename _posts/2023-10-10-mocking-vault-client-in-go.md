@@ -1,4 +1,4 @@
-<!-- ---
+---
 layout: post
 title: Mocking Vault client in Go
 date: 2023-10-10 15:09:00
@@ -97,4 +97,4 @@ func (m *MockVaultLogical) List(path string) (*api.Secret, error) {
  return args.Get(0).(*api.Secret), args.Error(1)
 }
 
-``` -->
+```
