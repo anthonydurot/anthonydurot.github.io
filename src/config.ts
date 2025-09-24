@@ -11,7 +11,6 @@ export const siteConfig = {
   aboutMe:
     "Experienced Senior Cloud Engineer who loves to code and build efficient, scalable solutions. Passionate about learning new technologies and improving development processes.",
   skills: ["Python", "Go", "Docker", "GCP", "AWS"],
-  projects: [],
   experience: [
     {
       company: "Decathlon",
