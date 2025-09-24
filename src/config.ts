@@ -60,6 +60,7 @@ export const siteConfig = {
       school: "Polytech Lille",
       degree: "Diplôme d'Ingénieur",
       dateRange: "2014 - 2019",
+      achievements: []
     },
   ],
 };
