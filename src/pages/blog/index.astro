@@ -2,46 +2,40 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-// 1. Fetch all blog posts from the "blog" collection
-// 2. Sort them by date (Newest -> Oldest)
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 
-<BaseLayout title="Blog Archive | Backend Engineer" description="Technical writing and tutorials.">
+<BaseLayout title="Blog Archive | Backend Engineer">
   <section class="py-8">
-    <div class="mb-10 border-b border-border pb-8">
-      <h1 class="text-3xl font-bold tracking-tight text-text mb-4">Technical Writing</h1>
-      <p class="text-xl text-secondary max-w-2xl">
+    <div class="mb-10 border-b border-slate-200 dark:border-slate-800 pb-8">
+      <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">Technical Writing</h1>
+      <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl">
         Thoughts on distributed systems, backend architecture, and code.
       </p>
     </div>
 
     <div class="grid gap-8">
       {posts.map((post) => (
-        <a href={`/blog/${post.slug}`} class="group block">
-          <article class="p-6 border border-border rounded-lg hover:border-primary/50 hover:shadow-sm transition-all bg-white">
+        <a href={`/blog/${post.slug}`} class="group block relative z-10">
+          <article class="p-6 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 hover:border-blue-500/50 dark:hover:border-blue-400/50 transition-all shadow-sm">
             <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-3">
-              <h2 class="text-2xl font-bold text-text group-hover:text-primary transition-colors">
+              <h2 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                 {post.data.title}
               </h2>
-              <time class="text-sm font-mono text-secondary shrink-0">
-                {post.data.pubDate.toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                })}
+              <time class="text-sm font-mono text-slate-500 shrink-0">
+                {post.data.pubDate.toLocaleDateString()}
               </time>
             </div>
             
-            <p class="text-secondary mb-4 line-clamp-2 leading-relaxed">
+            <p class="text-slate-600 dark:text-slate-400 mb-4 line-clamp-2 leading-relaxed">
               {post.data.description}
             </p>
             
             <div class="flex gap-2">
               {post.data.tags.map(tag => (
-                <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
+                <span class="inline-flex items-center rounded-md bg-slate-100 dark:bg-slate-800 px-2 py-1 text-xs font-medium text-slate-700 dark:text-slate-300">
                   #{tag}
                 </span>
               ))}

@@ -2,66 +2,107 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="About | Backend Engineer" description="My professional background and tech stack.">
+<BaseLayout title="About | Backend Engineer" description="My background, experience, and technical stack.">
   
-  <section class="prose prose-slate prose-lg dark:prose-invert mb-12">
-    <h1>About Me</h1>
-    <p class="lead">
-      I am a Backend Engineer who enjoys solving complex data problems. I focus on reliability, scalability, and maintainable architecture.
+  <section class="prose prose-slate prose-lg dark:prose-invert mb-16 max-w-none">
+    <h1 class="text-4xl font-extrabold tracking-tight mb-4 text-slate-900 dark:text-white">
+      About Me
+    </h1>
+    <p class="lead text-xl text-slate-600 dark:text-slate-300">
+      I am a Software Engineer with a focus on <strong class="text-blue-600 dark:text-blue-400">Distributed Systems</strong> and <strong class="text-blue-600 dark:text-blue-400">Cloud Infrastructure</strong>.
     </p>
     <p>
-      With a background in Computer Science and years of experience in distributed systems, 
-      I have transitioned from building simple APIs to architecting event-driven systems 
-      handling thousands of requests per second.
+      I don't just write code; I design systems that are reliable, scalable, and maintainable. 
+      My philosophy is simple: <strong>boring technology is better technology</strong>. 
+      I prefer proven solutions (Postgres, Linux) over hype, and I believe that clear documentation is just as important as clean code.
     </p>
     <p>
-      Currently, I am working on <strong>High Frequency Trading</strong> platforms using Java and Rust.
-      When I'm not coding, I'm likely optimizing my ZSH config or reading about system design patterns.
+      Currently, I am working on high-throughput payment processing systems. Before that, 
+      I helped scale a monolithic architecture into microservices for a fintech startup.
     </p>
   </section>
 
-  <section>
-    <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Technical Stack</h2>
-    
+  <section class="mb-16">
+    <h2 class="text-2xl font-bold mb-8 text-slate-900 dark:text-white flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600 dark:text-blue-400"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      The Stack
+    </h2>
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="p-6 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
-        <h3 class="font-bold mb-4 flex items-center gap-2">
-          <span class="text-blue-600 dark:text-blue-400">#</span> Core
-        </h3>
-        <ul class="space-y-2 text-sm font-mono text-slate-700 dark:text-slate-300">
-          <li>Java / JVM</li>
-          <li>Python (FastAPI, Django)</li>
-          <li>Go (Golang)</li>
-          <li>SQL (Postgres, MySQL)</li>
+      
+      <div class="p-6 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 transition-colors">
+        <h3 class="font-bold text-lg mb-4 text-slate-900 dark:text-white">Languages</h3>
+        <ul class="flex flex-wrap gap-2">
+          {["Java (Spring Boot)", "Go (Golang)", "Python", "Rust", "TypeScript"].map((item) => (
+            <li class="px-3 py-1 text-sm bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700">
+              {item}
+            </li>
+          ))}
         </ul>
       </div>
 
-      <div class="p-6 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
-        <h3 class="font-bold mb-4 flex items-center gap-2">
-          <span class="text-blue-600 dark:text-blue-400">#</span> Infrastructure
-        </h3>
-        <ul class="space-y-2 text-sm font-mono text-slate-700 dark:text-slate-300">
-          <li>Docker & Kubernetes</li>
-          <li>AWS (Lambda, S3, EC2)</li>
-          <li>Terraform / Ansible</li>
-          <li>Kafka / RabbitMQ</li>
+      <div class="p-6 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 transition-colors">
+        <h3 class="font-bold text-lg mb-4 text-slate-900 dark:text-white">Data & Messaging</h3>
+        <ul class="flex flex-wrap gap-2">
+          {["PostgreSQL", "Redis", "Kafka", "Elasticsearch", "RabbitMQ"].map((item) => (
+            <li class="px-3 py-1 text-sm bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700">
+              {item}
+            </li>
+          ))}
         </ul>
       </div>
+
+      <div class="p-6 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 transition-colors">
+        <h3 class="font-bold text-lg mb-4 text-slate-900 dark:text-white">Infrastructure</h3>
+        <ul class="flex flex-wrap gap-2">
+          {["Docker", "Kubernetes", "AWS (EC2, Lambda, S3)", "Terraform", "GitHub Actions"].map((item) => (
+            <li class="px-3 py-1 text-sm bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="p-6 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 transition-colors">
+        <h3 class="font-bold text-lg mb-4 text-slate-900 dark:text-white">Tools & Workflow</h3>
+        <ul class="flex flex-wrap gap-2">
+          {["Git", "Neovim / VS Code", "Linux", "Postman", "Grafana", "Prometheus"].map((item) => (
+            <li class="px-3 py-1 text-sm bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
     </div>
   </section>
 
-  <section class="mt-12 border-t border-slate-200 dark:border-slate-800 pt-8">
-    <h2 class="text-xl font-bold mb-4">Connect</h2>
-    <div class="flex gap-4">
-      <a href="https://github.com" class="inline-flex items-center justify-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-        GitHub
-      </a>
-      <a href="https://linkedin.com" class="inline-flex items-center justify-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-        LinkedIn
-      </a>
-      <a href="mailto:email@example.com" class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
-        Email Me
-      </a>
+  <section class="mb-16">
+    <h2 class="text-2xl font-bold mb-8 text-slate-900 dark:text-white flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600 dark:text-blue-400"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+      Experience
+    </h2>
+
+    <div class="relative border-l border-slate-200 dark:border-slate-800 ml-3 space-y-12">
+      
+      <div class="relative pl-8">
+        <span class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-blue-600 dark:bg-blue-400 ring-4 ring-white dark:ring-[#0B1120]"></span>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Senior Backend Engineer</h3>
+        <span class="text-sm font-mono text-slate-500">TechCorp • 2021 - Present</span>
+        <p class="mt-2 text-slate-600 dark:text-slate-400 max-w-2xl">
+          Leading the migration from a PHP monolith to Go microservices. Improved system latency by 40% and implemented a new event-driven architecture using Kafka.
+        </p>
+      </div>
+
+      <div class="relative pl-8">
+        <span class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-slate-300 dark:bg-slate-600 ring-4 ring-white dark:ring-[#0B1120]"></span>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Software Engineer</h3>
+        <span class="text-sm font-mono text-slate-500">StartupInc • 2018 - 2021</span>
+        <p class="mt-2 text-slate-600 dark:text-slate-400 max-w-2xl">
+          Built the initial payment gateway integration using Python/Django. Designed the REST API consumed by the mobile team.
+        </p>
+      </div>
+
     </div>
   </section>
 

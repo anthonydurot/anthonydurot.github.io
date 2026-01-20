@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-// Fetch the latest 3 blog posts
 const allPosts = await getCollection('blog');
 const latestPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -11,11 +10,11 @@ const latestPosts = allPosts
 
 <BaseLayout title="Home | Backend Engineer">
   
-  <section class="mb-16 py-10 border-b border-border">
-    <h1 class="text-4xl font-extrabold tracking-tight mb-6 text-text">
-      Hello, I'm <span class="text-primary">Dev</span>.
+  <section class="mb-16 py-10 border-b border-slate-200 dark:border-slate-800">
+    <h1 class="text-4xl font-extrabold tracking-tight mb-6 text-slate-900 dark:text-white">
+      Hello, I'm <span class="text-blue-600 dark:text-blue-400">Dev</span>.
     </h1>
-    <p class="text-xl text-secondary leading-relaxed max-w-prose">
+    <p class="text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-prose">
       I am a Backend Software Engineer specializing in distributed systems, 
       cloud infrastructure, and high-performance APIs. I build things that scale.
     </p>
@@ -23,8 +22,8 @@ const latestPosts = allPosts
 
   <section>
     <div class="flex items-center justify-between mb-8">
-      <h2 class="text-2xl font-bold tracking-tight text-text">Recent Writing</h2>
-      <a href="/blog" class="text-sm font-medium text-primary hover:underline hover:text-primary/80 transition-colors">
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Recent Writing</h2>
+      <a href="/blog" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">
         View all posts →
       </a>
     </div>
@@ -32,13 +31,15 @@ const latestPosts = allPosts
     <div class="grid gap-6">
       {latestPosts.length > 0 ? (
         latestPosts.map((post) => (
-          <a href={`/blog/${post.slug}`} class="block group">
-            <article class="p-6 border border-border rounded-lg hover:border-primary/50 hover:shadow-sm transition-all bg-white">
-              <h3 class="text-xl font-bold mb-2 text-text group-hover:text-primary transition-colors">
+          <a href={`/blog/${post.slug}`} class="block group relative z-10">
+            <article class="p-6 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 hover:border-blue-500/50 dark:hover:border-blue-400/50 transition-all shadow-sm">
+              <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                 {post.data.title}
               </h3>
-              <p class="text-secondary mb-4 line-clamp-2">{post.data.description}</p>
-              <div class="flex gap-3 text-xs font-mono text-secondary/70 uppercase tracking-wide">
+              <p class="text-slate-600 dark:text-slate-400 mb-4 line-clamp-2">
+                {post.data.description}
+              </p>
+              <div class="flex gap-3 text-xs font-mono text-slate-500 dark:text-slate-500 uppercase tracking-wide">
                 <time>{post.data.pubDate.toLocaleDateString()}</time>
                 <span>•</span>
                 <span>{post.data.tags.join(', ')}</span>
@@ -47,7 +48,7 @@ const latestPosts = allPosts
           </a>
         ))
       ) : (
-        <p class="text-secondary italic">No posts found. Create a markdown file in src/content/blog/ to get started.</p>
+        <p class="text-slate-500">No posts found. Add a file to src/content/blog/</p>
       )}
     </div>
   </section>
