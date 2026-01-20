@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About | Backend Engineer" description="My professional background and tech stack.">
+  
+  <section class="prose prose-slate prose-lg dark:prose-invert mb-12">
+    <h1>About Me</h1>
+    <p class="lead">
+      I am a Backend Engineer who enjoys solving complex data problems. I focus on reliability, scalability, and maintainable architecture.
+    </p>
+    <p>
+      With a background in Computer Science and years of experience in distributed systems, 
+      I have transitioned from building simple APIs to architecting event-driven systems 
+      handling thousands of requests per second.
+    </p>
+    <p>
+      Currently, I am working on <strong>High Frequency Trading</strong> platforms using Java and Rust.
+      When I'm not coding, I'm likely optimizing my ZSH config or reading about system design patterns.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Technical Stack</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="p-6 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
+        <h3 class="font-bold mb-4 flex items-center gap-2">
+          <span class="text-blue-600 dark:text-blue-400">#</span> Core
+        </h3>
+        <ul class="space-y-2 text-sm font-mono text-slate-700 dark:text-slate-300">
+          <li>Java / JVM</li>
+          <li>Python (FastAPI, Django)</li>
+          <li>Go (Golang)</li>
+          <li>SQL (Postgres, MySQL)</li>
+        </ul>
+      </div>
+
+      <div class="p-6 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
+        <h3 class="font-bold mb-4 flex items-center gap-2">
+          <span class="text-blue-600 dark:text-blue-400">#</span> Infrastructure
+        </h3>
+        <ul class="space-y-2 text-sm font-mono text-slate-700 dark:text-slate-300">
+          <li>Docker & Kubernetes</li>
+          <li>AWS (Lambda, S3, EC2)</li>
+          <li>Terraform / Ansible</li>
+          <li>Kafka / RabbitMQ</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-12 border-t border-slate-200 dark:border-slate-800 pt-8">
+    <h2 class="text-xl font-bold mb-4">Connect</h2>
+    <div class="flex gap-4">
+      <a href="https://github.com" class="inline-flex items-center justify-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+        GitHub
+      </a>
+      <a href="https://linkedin.com" class="inline-flex items-center justify-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+        LinkedIn
+      </a>
+      <a href="mailto:email@example.com" class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+        Email Me
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

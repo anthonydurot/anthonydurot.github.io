@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  // This generates the routes for every file in src/content/blog/
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<BaseLayout title={post.data.title} description={post.data.description} loadMermaid={post.data.mermaid}>
+  <article class="prose prose-slate prose-lg max-w-none mx-auto mt-10">
+    <h1>{post.data.title}</h1>
+    <Content />
+  </article>
+</BaseLayout>

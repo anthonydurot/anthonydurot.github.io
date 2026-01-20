@@ -1,16 +1,54 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
 
+// Fetch the latest 3 blog posts
+const allPosts = await getCollection('blog');
+const latestPosts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Home | Backend Engineer">
+  
+  <section class="mb-16 py-10 border-b border-border">
+    <h1 class="text-4xl font-extrabold tracking-tight mb-6 text-text">
+      Hello, I'm <span class="text-primary">Dev</span>.
+    </h1>
+    <p class="text-xl text-secondary leading-relaxed max-w-prose">
+      I am a Backend Software Engineer specializing in distributed systems, 
+      cloud infrastructure, and high-performance APIs. I build things that scale.
+    </p>
+  </section>
+
+  <section>
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-2xl font-bold tracking-tight text-text">Recent Writing</h2>
+      <a href="/blog" class="text-sm font-medium text-primary hover:underline hover:text-primary/80 transition-colors">
+        View all posts →
+      </a>
+    </div>
+
+    <div class="grid gap-6">
+      {latestPosts.length > 0 ? (
+        latestPosts.map((post) => (
+          <a href={`/blog/${post.slug}`} class="block group">
+            <article class="p-6 border border-border rounded-lg hover:border-primary/50 hover:shadow-sm transition-all bg-white">
+              <h3 class="text-xl font-bold mb-2 text-text group-hover:text-primary transition-colors">
+                {post.data.title}
+              </h3>
+              <p class="text-secondary mb-4 line-clamp-2">{post.data.description}</p>
+              <div class="flex gap-3 text-xs font-mono text-secondary/70 uppercase tracking-wide">
+                <time>{post.data.pubDate.toLocaleDateString()}</time>
+                <span>•</span>
+                <span>{post.data.tags.join(', ')}</span>
+              </div>
+            </article>
+          </a>
+        ))
+      ) : (
+        <p class="text-secondary italic">No posts found. Create a markdown file in src/content/blog/ to get started.</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
