@@ -7,10 +7,6 @@ export default defineConfig({
   // 1. REPLACE with your GitHub username
   site: 'https://anthonydurot.github.io',
 
-  // 2. REPLACE with your repository name (e.g., '/my-portfolio')
-  // If you are using a custom domain later, you can remove this line.
-  base: '/my-portfolio',
-
   integrations: [
     tailwind(),
     sitemap(),
