@@ -1,25 +1,27 @@
-// astro.config.mjs
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://your-portfolio.com', // Replace with your domain
+  // 1. REPLACE with your GitHub username
+  site: 'https://anthonydurot.github.io',
+
+  // 2. REPLACE with your repository name (e.g., '/my-portfolio')
+  // If you are using a custom domain later, you can remove this line.
+  base: '/my-portfolio',
+
   integrations: [
     tailwind(),
     sitemap(),
     mdx({
-      // Shiki Syntax Highlighting is built-in.
-      // We use 'github-dark' for a professional backend look.
       shikiConfig: {
         theme: 'github-dark',
-        wrap: true, // Prevents horizontal scrolling overflow
+        wrap: true,
       },
     }),
   ],
   markdown: {
-    // This allows you to use standard Markdown files alongside MDX
     gfm: true,
   }
 });

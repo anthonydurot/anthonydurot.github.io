@@ -1,0 +1,76 @@
+# Mise configuration for Astro Portfolio project
+# https://mise.jdx.dev/
+
+[tools]
+# Node.js runtime - Astro 5.x requires Node.js 18.17.1, 20.3.0 or higher
+node = "20.18.1"
+
+# npm comes bundled with Node.js, but we can specify it explicitly
+# npm = "latest" # Uncomment if you want to use a specific npm version
+
+[env]
+# Environment variables for development
+_.path = ["./node_modules/.bin", "$PATH"]
+NODE_ENV = "development"
+
+# Optional: Set specific Node options
+# NODE_OPTIONS = "--max-old-space-size=4096"
+
+[tasks.dev]
+description = "Start Astro development server"
+run = "npm run dev"
+
+[tasks.build]
+description = "Build production site"
+run = "npm run build"
+
+[tasks.preview]
+description = "Preview production build locally"
+run = "npm run preview"
+
+[tasks.install]
+description = "Install dependencies"
+run = "npm install"
+
+[tasks.clean]
+description = "Clean build artifacts and dependencies"
+run = """
+rm -rf dist
+rm -rf .astro
+rm -rf node_modules
+"""
+
+[tasks.clean-install]
+description = "Clean install all dependencies"
+depends = ["clean"]
+run = "npm install"
+
+[tasks.check]
+description = "Run Astro check for TypeScript errors"
+run = "npx astro check"
+
+[tasks.format]
+description = "Format code (requires prettier)"
+run = "npx prettier --write ."
+
+[tasks.pagefind]
+description = "Build Pagefind search index"
+run = "npx pagefind --site dist"
+
+# Hooks - run automatically on certain events
+[hooks]
+# Automatically install dependencies when entering the directory if node_modules is missing
+enter = """
+if [ ! -d "node_modules" ]; then
+  echo "📦 Installing dependencies..."
+  npm install
+fi
+"""
+
+# Settings
+[settings]
+# Show verbose output
+verbose = false
+
+# Experimental features
+experimental = true
