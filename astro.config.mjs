@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import icon from 'astro-icon';
 
 export default defineConfig({
   site: 'https://anthonydurot.github.io',
@@ -12,6 +13,7 @@ export default defineConfig({
     mdx({
       shikiConfig: { theme: 'github-dark', wrap: true },
     }),
+    icon(),
   ],
   markdown: { gfm: true }
 });

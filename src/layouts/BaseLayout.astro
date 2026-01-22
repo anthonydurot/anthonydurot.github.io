@@ -1,14 +1,18 @@
 ---
-import ThemeToggle from '../components/ThemeToggle.astro';
-import Search from '../components/Search.astro'; // <--- Import Search
-
+import ThemeToggle from "../components/ThemeToggle.astro";
+import Search from "../components/Search.astro"; // <--- Import Search
+import { Icon } from "astro-icon/components";
 interface Props {
   title: string;
   description?: string;
   loadMermaid?: boolean;
 }
 
-const { title, description = "Anthony Durot | Senior Cloud Engineer", loadMermaid = false } = Astro.props;
+const {
+  title,
+  description = "Anthony Durot | Senior Cloud Engineer",
+  loadMermaid = false,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -21,102 +25,177 @@ const { title, description = "Anthony Durot | Senior Cloud Engineer", loadMermai
 
     <script is:inline>
       const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme');
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
         }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark';
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
         }
-        return 'light';
+        return "light";
       })();
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
       }
     </script>
   </head>
-  
-  <body class="bg-slate-50 text-slate-900 dark:bg-[#0B1120] dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-300">
-    
-    <header class="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-[#0B1120]/80 backdrop-blur-md">
-      <nav class="max-w-4xl mx-auto flex justify-between items-center p-4">
-        
-        <a href="/" class="font-bold text-lg tracking-tight hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+
+  <body
+    class="flex min-h-screen flex-col bg-slate-50 font-sans text-slate-900 transition-colors duration-300 dark:bg-[#0B1120] dark:text-slate-100"
+  >
+    <header
+      class="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#0B1120]/80"
+    >
+      <nav class="mx-auto flex max-w-4xl items-center justify-between p-4">
+        <a
+          href="/"
+          class="text-lg font-bold tracking-tight transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+        >
           Anthony Durot
         </a>
-        
+
         <div class="flex items-center gap-4">
-          
-          <a href="/blog" class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors hidden md:block">
+          <a
+            href="/blog"
+            class="hidden text-sm font-medium text-slate-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 md:block"
+          >
             Blog
           </a>
-          <a href="/about" class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors hidden md:block">
+          <a
+            href="/about"
+            class="hidden text-sm font-medium text-slate-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 md:block"
+          >
             About
           </a>
-          <a href="/talks" class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors hidden md:block">
+          <a
+            href="/talks"
+            class="hidden text-sm font-medium text-slate-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 md:block"
+          >
             Talks
           </a>
-          <a href="/uses" class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors hidden md:block">
+          <a
+            href="/uses"
+            class="hidden text-sm font-medium text-slate-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 md:block"
+          >
             Uses
           </a>
 
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+          >
             <span class="sr-only">GitHub</span>
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+            <svg
+              class="h-5 w-5"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              ><path
+                fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                clip-rule="evenodd"></path></svg
+            >
           </a>
 
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+          >
             <span class="sr-only">LinkedIn</span>
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"></path></svg>
+            <svg
+              class="h-5 w-5"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              ><path
+                fill-rule="evenodd"
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                clip-rule="evenodd"></path></svg
+            >
           </a>
 
           <ThemeToggle />
-          
+
           <div class="hidden sm:block">
             <Search />
           </div>
-
         </div>
       </nav>
     </header>
 
-    <main class="flex-1 w-full max-w-4xl mx-auto p-4 md:py-12 relative z-0">
+    <main class="relative z-0 mx-auto w-full max-w-4xl flex-1 p-4 md:py-12">
       <slot />
     </main>
 
-    <footer class="border-t border-slate-200 dark:border-slate-800 mt-12 py-8 text-center text-sm text-slate-500 dark:text-slate-400">
-      <p>&copy; {new Date().getFullYear()} Backend Engineer. Built with Astro.</p>
+    <footer class="mt-20 border-t border-slate-200 py-10 dark:border-slate-800">
+      <div
+        class="mx-auto flex max-w-4xl flex-col items-center gap-4 text-sm text-slate-500 dark:text-slate-400"
+      >
+        <p>Anthony Durot — {new Date().getFullYear()}</p>
+
+        <div class="flex items-center gap-4">
+          <span>Propulsé par</span>
+
+          <a
+            href="https://astro.build"
+            target="_blank"
+            aria-label="Astro"
+            class="transition-colors duration-300 hover:text-[#FF5D01]"
+          >
+            <Icon name="simple-icons:astro" class="h-6 w-6" />
+          </a>
+
+          <span>&</span>
+
+          <a
+            href="https://tailwindcss.com"
+            target="_blank"
+            aria-label="Tailwind CSS"
+            class="transition-colors duration-300 hover:text-[#38BDF8]"
+          >
+            <Icon name="simple-icons:tailwindcss" class="h-6 w-6" />
+          </a>
+        </div>
+      </div>
     </footer>
     <script is:inline>
       // On attend que le DOM soit chargé
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         // On sélectionne tous les blocs de code générés par Markdown
-        const codeBlocks = document.querySelectorAll('pre');
+        const codeBlocks = document.querySelectorAll("pre");
 
         codeBlocks.forEach((codeBlock) => {
           // 1. Créer le bouton
-          const copyButton = document.createElement('button');
-          copyButton.className = 'absolute top-2 right-2 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 bg-slate-100 dark:bg-slate-800 p-1.5 rounded-md transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100';
+          const copyButton = document.createElement("button");
+          copyButton.className =
+            "absolute top-2 right-2 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 bg-slate-100 dark:bg-slate-800 p-1.5 rounded-md transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100";
           copyButton.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           `;
-          copyButton.ariaLabel = 'Copier le code';
+          copyButton.ariaLabel = "Copier le code";
 
           // 2. Wrapper le codeBlock dans une div relative pour positionner le bouton
-          const wrapper = document.createElement('div');
-          wrapper.className = 'relative group';
-          
+          const wrapper = document.createElement("div");
+          wrapper.className = "relative group";
+
           codeBlock.parentNode.insertBefore(wrapper, codeBlock);
           wrapper.appendChild(codeBlock);
           wrapper.appendChild(copyButton);
 
           // 3. Logique du clic
-          copyButton.addEventListener('click', async () => {
+          copyButton.addEventListener("click", async () => {
             await navigator.clipboard.writeText(codeBlock.innerText);
-            
+
             // Feedback visuel (Checkmark)
             const originalIcon = copyButton.innerHTML;
             copyButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
-            
+
             setTimeout(() => {
               copyButton.innerHTML = originalIcon;
             }, 2000);
@@ -124,12 +203,20 @@ const { title, description = "Anthony Durot | Senior Cloud Engineer", loadMermai
         });
       });
     </script>
-    {loadMermaid && (
-      <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-        const isDark = document.documentElement.classList.contains('dark');
-        mermaid.initialize({ startOnLoad: true, theme: isDark ? 'dark' : 'neutral' });
-      </script>
-    )}
+    <script type="module" define:vars={{ loadMermaid }}>
+      // Le code ici ne s'exécutera que si loadMermaid est true
+      if (loadMermaid) {
+        // Import dynamique : on ne télécharge la librairie que maintenant
+        import("https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs")
+          .then(({ default: mermaid }) => {
+            const isDark = document.documentElement.classList.contains("dark");
+            mermaid.initialize({
+              startOnLoad: true,
+              theme: isDark ? "dark" : "neutral",
+            });
+          })
+          .catch((e) => console.error("Mermaid failed to load", e));
+      }
+    </script>
   </body>
 </html>
