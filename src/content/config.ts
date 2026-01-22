@@ -11,6 +11,7 @@ const blogCollection = defineCollection({
         tags: z.array(z.string()).default([]),
         // specific feature flags
         mermaid: z.boolean().default(false), // Only load Mermaid script if needed
+        draft: z.boolean().optional().default(false),
     }),
 });
 

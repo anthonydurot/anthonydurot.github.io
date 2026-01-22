@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 - Page non trouvée">
+  <div class="flex flex-col items-center justify-center min-h-[60vh] text-center">
+    <h1 class="text-9xl font-bold text-slate-200 dark:text-slate-800">404</h1>
+    <p class="text-2xl font-bold text-slate-900 dark:text-white mt-4">
+      Oups ! Cette ressource Terraform n'existe pas.
+    </p>
+    <p class="text-slate-600 dark:text-slate-400 mt-2 max-w-md">
+      Il semble que vous ayez suivi un lien cassé ou que la page ait été supprimée.
+    </p>
+    <a href="/" class="mt-8 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+      Retour à la console (Accueil)
+    </a>
+  </div>
+</BaseLayout>

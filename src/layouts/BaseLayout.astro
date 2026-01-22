@@ -8,7 +8,7 @@ interface Props {
   loadMermaid?: boolean;
 }
 
-const { title, description = "Backend Engineer Portfolio", loadMermaid = false } = Astro.props;
+const { title, description = "Anthony Durot | Senior Cloud Engineer", loadMermaid = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -41,7 +41,7 @@ const { title, description = "Backend Engineer Portfolio", loadMermaid = false }
       <nav class="max-w-4xl mx-auto flex justify-between items-center p-4">
         
         <a href="/" class="font-bold text-lg tracking-tight hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-          ~/portfolio
+          Anthony Durot
         </a>
         
         <div class="flex items-center gap-4">
@@ -51,6 +51,12 @@ const { title, description = "Backend Engineer Portfolio", loadMermaid = false }
           </a>
           <a href="/about" class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors hidden md:block">
             About
+          </a>
+          <a href="/talks" class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors hidden md:block">
+            Talks
+          </a>
+          <a href="/uses" class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors hidden md:block">
+            Uses
           </a>
 
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
@@ -80,7 +86,44 @@ const { title, description = "Backend Engineer Portfolio", loadMermaid = false }
     <footer class="border-t border-slate-200 dark:border-slate-800 mt-12 py-8 text-center text-sm text-slate-500 dark:text-slate-400">
       <p>&copy; {new Date().getFullYear()} Backend Engineer. Built with Astro.</p>
     </footer>
+    <script is:inline>
+      // On attend que le DOM soit chargé
+      document.addEventListener('DOMContentLoaded', () => {
+        // On sélectionne tous les blocs de code générés par Markdown
+        const codeBlocks = document.querySelectorAll('pre');
 
+        codeBlocks.forEach((codeBlock) => {
+          // 1. Créer le bouton
+          const copyButton = document.createElement('button');
+          copyButton.className = 'absolute top-2 right-2 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 bg-slate-100 dark:bg-slate-800 p-1.5 rounded-md transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100';
+          copyButton.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          `;
+          copyButton.ariaLabel = 'Copier le code';
+
+          // 2. Wrapper le codeBlock dans une div relative pour positionner le bouton
+          const wrapper = document.createElement('div');
+          wrapper.className = 'relative group';
+          
+          codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+          wrapper.appendChild(codeBlock);
+          wrapper.appendChild(copyButton);
+
+          // 3. Logique du clic
+          copyButton.addEventListener('click', async () => {
+            await navigator.clipboard.writeText(codeBlock.innerText);
+            
+            // Feedback visuel (Checkmark)
+            const originalIcon = copyButton.innerHTML;
+            copyButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+            
+            setTimeout(() => {
+              copyButton.innerHTML = originalIcon;
+            }, 2000);
+          });
+        });
+      });
+    </script>
     {loadMermaid && (
       <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
